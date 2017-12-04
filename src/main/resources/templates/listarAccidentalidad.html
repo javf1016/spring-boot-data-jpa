@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" /></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4 class="card-title">
+					<a th:href="@{/form}" class="btn btn-primary btn-xs">Crear Informe Interno</a>
+					<a th:href="@{/form}" class="btn btn-primary btn-xs">Asignar Reporte SAE</a>
+				</h4>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+				<th>idSae</th>
+					<th>Instante</th>
+					<th>Franja Horaria</th>
+					<th>Clase</th>
+					<th>Tipo</th>
+					<th>Reportado Por</th>
+					<th>editar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="accidentalidad:${accidentalidades}">
+				<td th:text="${accidentalidad.idSae}"></td>
+					<td th:text="${accidentalidad.instante}"></td>
+					<td th:text="${accidentalidad.franjaHoraria}"></td>
+					<td th:text="${accidentalidad.clase}"></td>
+					<td th:text="${accidentalidad.tipo}"></td>
+					<td th:text="${accidentalidad.reportadoPor}"></td>
+					<td><a class="btn btn-primary btn-xs"
+						th:href="@{/formAccidentalidadInterno/} + ${accidentalidad.id}"
+						th:text="'editar'"></a></td>
+				</tr>
+			</tbody>
+
+		</table>
+				<nav th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

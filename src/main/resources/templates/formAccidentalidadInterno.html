@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<h1 align="center" class="w3-border-bottom w3-border-light-grey w3-padding-16">Informe
+				de Accidentalidad</h1>
+			<div class="card-body">
+				<div th:object="${accidentalidad}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+						role="alert">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
+				<!-- Page content -->
+
+				<!-- Project Section -->
+<form th:action="@{/form}" th:object="${accidentalidad}" method="post">
+				<div class="w3-row-padding">
+					<!-- Informe de Accidentalidad -->
+					<div class="w3-container w3-padding-32" id="about">
+						<p class="bg-primary">Detalle del Suceso</p>
+					</div>
+
+					<div class="w3-row-padding w3-grayscale">
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Instante
+								de Creación Interno</label>
+							<p>
+								<input id="instanteAccidente" type="datetime-local" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteAccidente">Dia de
+								la Semana</label>
+							<p>
+								<input type="text" th:field="*{dia}"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('dia')}" th:errors="*{dia}"></small>
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Franja
+								Horaria</label>
+							<p>
+								<input id="instanteAccidente" type="text" value=""
+									disabled="disabled" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="diaSemana">Clase</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+
+					</div>
+
+					<div class="w3-row-padding w3-grayscale">
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Tipo</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteAccidente">Afectación</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Reportado
+								Por</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteAccidente">Tipo de
+								Servicio</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						
+
+					</div>
+
+					<div class="w3-row-padding w3-grayscale">
+					
+					<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Empresa
+								Operadora</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteAccidente">Concesión</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Línea</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteAccidente">Ruta</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						
+					</div>
+<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Parada</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteAccidente">Zona de
+								Transporte</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+					<div class="w3-container w3-padding-3" id="about">
+						<p class="bg-primary">Detalle del Vehículo del Sistema</p>
+					</div>
+					<div class="w3-row-padding w3-grayscale">
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteAccidente">Placa</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Movil</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+					</div>
+
+					<div class="w3-container w3-padding-12" id="about">
+						<div class="w3-col l12 m6 w3-margin-bottom">
+							<label for="instanteCreacion" class="w3-opacity">Daños
+								del Vehículo Interno</label>
+							<textarea class="form-control" rows="5" id="comment"></textarea>
+						</div>
+					</div>
+
+					<div class="w3-container w3-padding-3" id="about">
+						<p class="bg-primary">Conductor</p>
+					</div>
+					<div class="w3-row-padding w3-grayscale">
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteAccidente">Código
+								del Operador</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Nombre</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+						<div class="w3-col l3 m6 w3-margin-bottom">
+							<label class="w3-opacity" for="instanteCreacion">Cédula</label>
+							<p>
+								<input id="instanteAccidente" type="text" value="" />
+							</p>
+						</div>
+					</div>
+
+					<!-- End page content -->
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
