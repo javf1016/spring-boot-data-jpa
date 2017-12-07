@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<link rel='stylesheet'
+	href='https://fonts.googleapis.com/css?family=Roboto' />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+<style>
+input.ex1 {
+	text-align: center;
+	margin-right: auto;
+	float: right;
+	width: 65%;
+}
+
+input.align {
+	text-align: center;
+}
+
+input.alignRight {
+	float: right;
+}
+
+label.alignL {
+  float:right;
+  width:100%;
+  text-align:right;
+  margin-right:5px; /* optional */
+}
+
+html, body, h1, h2, h3, h4, h5, h6 {
+	font-family: "Roboto", sans-serif
+}
+</style>
+
+<body class="w3-light-grey">
+<header th:replace="layout/layout :: header"></header>
+
+
+<div class="container py-4">
+		<div class="card bg-light">
+			<h1 align="center" class="w3-border-bottom w3-border-light-grey w3-padding-16">Vehículo</h1>
+			<div class="card-body">
+				<div th:object="${vehiculo}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+						role="alert">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
+
+	<form th:action="@{/formVehiculo}" th:object="${vehiculo}"
+		method="post">
+		<!-- Page Container -->
+		<div style="max-width: 1400px;">
+			<div class="w3-container">
+				<input style="float: right;" type="submit"
+					value="Modificar Vehículo" class="btn btn-primary" />
+			</div>
+
+
+			<!-- The Grid -->
+			<div class="w3-row-padding">
+				<div class="form-group row">
+					<div class="col-sm-6"></div>
+				</div>
+				<!-- Left Column -->
+				<div class="w3-third">
+
+					<!-- Foto -->
+					<div class="w3-white w3-text-grey w3-card-4">
+						<div class="w3-display-container">
+							<img src="/images/sitpT12.jpg" style="width: 100%" alt="Avatar" />
+							<div class="w3-display-bottomleft w3-container w3-text-black">
+							</div>
+						</div>
+						<div class="w3-container">
+							<hr></hr>
+
+							<!-- Datos básicos-->
+
+							<h6 class="w3-text-teal">
+								<p>
+									<i
+										class="fa fa-bus  fa-fw w3-margin-right w3-large w3-text-teal"></i>Placa
+									<input class="ex1" type="text" th:field="*{placa}"
+										id="validationDefault01" placeholder="Placa"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"></small>
+								</p>
+								<p>
+									<i
+										class="fa fa-address-card  fa-fw w3-margin-right w3-large w3-text-teal"></i>Móvil
+									<input class="ex1" type="text" th:field="*{movil}"
+										id="validationDefault02" placeholder="Móvil"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('movil')}" th:errors="*{movil}"></small>
+								</p>
+								<p>
+									<i
+										class="fa fa-book  fa-fw w3-margin-right w3-large w3-text-teal"></i>Estado<input
+										class="ex1" type="text" th:field="*{estado}"
+										id="validationDefault03" placeholder="Estado"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></small>
+								</p>
+								<p>
+									<i
+										class="fa fa-handshake-o fa-fw w3-margin-right w3-large w3-text-teal"></i>Tenencia<input
+										class="ex1" type="text" th:field="*{condicionTenencia}"
+										id="validationDefault03" placeholder="Condición de Tenencia"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('condicionTenencia')}"
+										th:errors="*{condicionTenencia}"></small>
+								</p>
+								<p>
+									<i
+										class="fa fa-id-card-o  fa-fw w3-margin-right w3-large w3-text-teal"></i>Tipo
+									Operación<input class="ex1" type="text"
+										th:field="*{tipoOperacion}" id="validationDefault03"
+										placeholder="Tipo Operación"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('tipoOperacion')}"
+										th:errors="*{tipoOperacion}"></small>
+								</p>
+								<p>
+									<i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal"></i>Tipología<input
+										class="ex1" type="text" th:field="*{tipologia}"
+										id="validationDefault03" placeholder="Tipología"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('tipologia')}"
+										th:errors="*{tipologia}"></small>
+								</p>
+								<p>
+									<i
+										class="fa fa-calendar  fa-fw w3-margin-right w3-large w3-text-teal"></i>Modelo<input
+										class="ex1" type="text" th:field="*{modelo}"
+										id="validationDefault03" placeholder="Modelo"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></small>
+								</p>
+							</h6>
+							<br></br>
+						</div>
+					</div>
+					<br></br>
+
+					<!-- End Left Column -->
+				</div>
+				<!-- Right Column -->
+				<div class="w3-twothird">
+
+					<!-- Caracteristicas -->
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapse1"> <i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal alignL">
+									</i>Características
+									</a>
+								</h4>
+							</div>
+							<div id="collapse1" class="panel-collapse collapse in">
+
+								<table class="table">
+									<tbody>
+										<td><label class="alignL">Fecha de Matrícula</label></td>
+										<td><input type="date" class="align"
+											th:field="*{fechaMatricula}" id="validationDefault08"
+											placeholder="Fecha de Matrícula"
+											th:errorclass="'form-control alert-danger'" /> <small
+											class="form-text text-danger"
+											th:if="${#fields.hasErrors('fechaMatricula')}"
+											th:errors="*{fechaMatricula}"></small></td>
+										<td><label class="alignL">Fecha de Vinculación</label></td>
+										<td><input class="align" type="date"
+											th:field="*{fechaVinculacion}" id="validationDefault09"
+											placeholder="Fecha de Vinculación"
+											th:errorclass="'form-control alert-danger'" /> <small
+											class="form-text text-danger"
+											th:if="${#fields.hasErrors('fechaVinculacion')}"
+											th:errors="*{fechaVinculacion}"></small></td>
+										<tr>
+											<td><label class="alignL">Cumplimiento Vida Útil
+													12 Años</label></td>
+											<td><input type="date" th:field="*{vidaUtil12}"
+												class="align" id="validationDefault10"
+												placeholder="Cumplimiento Vida Útil 12 Años"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('vidaUtil12')}"
+												th:errors="*{vidaUtil12}"></small></td>
+											<td><label class="alignL">Cumplimiento Vida Útil
+													14 Años</label></td>
+											<td><input type="date" th:field="*{vidaUtil14}"
+												class="align" id="validationDefault11"
+												placeholder="Cumplimiento Vida Útil 14 Años"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('vidaUtil14')}"
+												th:errors="*{vidaUtil14}"></small></td>
+										</tr>
+										<tr>
+											<td><label class="alignL">Marca</label></td>
+											<td><input type="text" class="align" th:field="*{marca}"
+												id="validationDefault12" placeholder="Marca"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></small></td>
+											<td><label class="alignL">Linea</label></td>
+											<td><input type="text" class="align" th:field="*{linea}"
+												id="validationDefault13" placeholder="Linea"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('linea')}" th:errors="*{linea}"></small></td>
+										</tr>
+										<tr>
+											<td><label class="alignL">Número Motor</label></td>
+											<td><input type="text" class="align"
+												th:field="*{numeroMotor}" id="validationDefault14"
+												placeholder="Número Motor"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('numeroMotor')}"
+												th:errors="*{numeroMotor}"></small></td>
+											<td><label class="alignL">Número Chasis</label></td>
+											<td><input type="text" class="align"
+												th:field="*{numeroChasis}" id="validationDefault13"
+												placeholder="Número Chasis"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('numeroChasis')}"
+												th:errors="*{numeroChasis}"></small></td>
+										</tr>
+										<tr>
+											<td><label class="alignL">Tipo de Carrocería</label></td>
+											<td><input type="text" class="align"
+												th:field="*{tipoCarroceria}" id="validationDefault13"
+												placeholder="Tipo de Carrocería"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('tipoCarroceria')}"
+												th:errors="*{tipoCarroceria}"></small></td>
+											<td><label class="alignL">Marca de la Carrocería</label></td>
+											<td><input class="align" type="text"
+												th:field="*{marcaCarroceria}" id="validationDefault13"
+												placeholder="Marca de la Carrocería"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('marcaCarroceria')}"
+												th:errors="*{marcaCarroceria}"></small></td>
+										</tr>
+										<tr>
+											<td><label class="alignL">Tipo de Combustible</label></td>
+											<td><input type="text" class="align"
+												th:field="*{tipoCombustible}" id="validationDefault13"
+												placeholder="Tipo de Combustible"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('tipoCombustible')}"
+												th:errors="*{tipoCombustible}"></small></td>
+											<td><label class="alignL">Capacidad de Pasajeros</label></td>
+											<td><input class="align" type="text"
+												th:field="*{capacidadPasajeros}" id="validationDefault13"
+												placeholder="Capacidad de Pasajeros"
+												th:errorclass="'form-control alert-danger'" /> <small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('capacidadPasajeros')}"
+												th:errors="*{capacidadPasajeros}"></small></td>
+										</tr>
+									</tbody>
+								</table>
+								<br></br>
+							</div>
+						</div>
+
+						<!-- Soat -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapse2"> <i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal">
+									</i>Soat
+									</a>
+								</h4>
+							</div>
+							<div id="collapse2" class="panel-collapse collapse">
+								<br></br>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Número de
+											Poliza Soat</label></i> <input class="align" type="text"
+										th:field="*{idSoat.numeroPolizaSoat}" id="validationDefault13"
+										placeholder="Número de Poliza Soat"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idSoat.numeroPolizaSoat')}"
+										th:errors="*{idSoat.numeroPolizaSoat}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Expedicion del SOAT</label></i> <input class="align" type="date"
+										th:field="*{idSoat.fechaExpedicionSoat}"
+										id="validationDefault20"
+										placeholder="Fecha de Expedicion del SOAT" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idSoat.fechaExpedicionSoat')}"
+										th:errors="*{idSoat.fechaExpedicionSoat}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Vencimiento del SOAT</label></i> <input class="align" type="date"
+										th:field="*{idSoat.fechaVencimientoSoat}"
+										id="validationDefault20"
+										placeholder="Fecha de Vencimiento del SOAT" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idSoat.fechaVencimientoSoat')}"
+										th:errors="*{idSoat.fechaVencimientoSoat}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Aviso de
+											Vencimiento (Dias)</label></i> <input class="align" type="text"
+										th:field="*{idSoat.avisoVencimientoSoat}"
+										id="validationDefault13"
+										placeholder="Aviso de Vencimiento (Dias)"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idSoat.avisoVencimientoSoat')}"
+										th:errors="*{idSoat.avisoVencimientoSoat}"></small>
+								</p>
+							</div>
+						</div>
+
+						<!-- Tarjeta de Operación -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapse3"><i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal">
+									</i>Tarjeta de Operación</a>
+								</h4>
+							</div>
+							<div id="collapse3" class="panel-collapse collapse">
+								<br></br>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Número de
+											Tarjeta de Operación</label></i> <input class="align" type="text"
+										th:field="*{idTarjetaOperacion.numeroTarjetaOperacion}"
+										id="validationDefault13"
+										placeholder="Número de Tarjeta de Operación"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idTarjetaOperacion.numeroTarjetaOperacion')}"
+										th:errors="*{idTarjetaOperacion.numeroTarjetaOperacion}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Expedicion de la Tarjeta de Operación</label></i><input class="align"
+										type="date"
+										th:field="*{idTarjetaOperacion.fechaExpedicionTarjetaOperacion}"
+										id="validationDefault20"
+										placeholder="Fecha de Expedicion de la Tarjeta de Operación" />
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('idTarjetaOperacion.fechaExpedicionTarjetaOperacion')}"
+										th:errors="*{idTarjetaOperacion.fechaExpedicionTarjetaOperacion}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Vencimiento de la Tarjeta de Operación</label></i> <input class="align"
+										type="date"
+										th:field="*{idTarjetaOperacion.fechaVencimientoTarjetaOperacion}"
+										id="validationDefault20"
+										placeholder="Fecha de Vencimiento de la Tarjeta de Operación" />
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('idTarjetaOperacion.fechaVencimientoTarjetaOperacion')}"
+										th:errors="*{idTarjetaOperacion.fechaVencimientoTarjetaOperacion}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Aviso de
+											Vencimiento (Dias)</label></i><input class="align" type="text"
+										th:field="*{idTarjetaOperacion.avisoVencimientoTarjetaOperacion}"
+										id="validationDefault13"
+										placeholder="Aviso de Vencimiento (Dias)"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idTarjetaOperacion.avisoVencimientoTarjetaOperacion')}"
+										th:errors="*{idTarjetaOperacion.avisoVencimientoTarjetaOperacion}"></small>
+								</p>
+							</div>
+						</div>
+
+						<!-- Certificado de Vinxculación -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapse4"><i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal">
+									</i>Certificado de Vinculación</a>
+								</h4>
+							</div>
+							<div id="collapse4" class="panel-collapse collapse">
+								<br></br>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Número de
+											Certificado de Vinculación</label></i><input class="align" type="text"
+										th:field="*{idCertificadoVinculacion.numeroCertificadoVinculacion}"
+										id="validationDefault13"
+										placeholder="Número de Certificado de Vinculación"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idCertificadoVinculacion.numeroCertificadoVinculacion')}"
+										th:errors="*{idCertificadoVinculacion.numeroCertificadoVinculacion}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Expedicion de el Certificado de Vinculación</label></i> <input
+										class="align" type="date"
+										th:field="*{idCertificadoVinculacion.fechaExpedicionCertificadoVinculacion}"
+										id="validationDefault20"
+										placeholder="Fecha de Expedicion de el Certificado de Vinculación"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idCertificadoVinculacion.fechaExpedicionCertificadoVinculacion')}"
+										th:errors="*{idCertificadoVinculacion.fechaExpedicionCertificadoVinculacion}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Vencimiento de el Certificado de Vinculación</label></i> <input
+										class="align" type="date"
+										th:field="*{idCertificadoVinculacion.fechaVencimientoCertificadoVinculacion}"
+										id="validationDefault20"
+										placeholder="Fecha de Vencimiento de el Certificado de Vinculación" />
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('idCertificadoVinculacion.fechaVencimientoCertificadoVinculacion')}"
+										th:errors="*{idCertificadoVinculacion.fechaVencimientoCertificadoVinculacion}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Aviso de
+											Vencimiento (Dias)</label></i> <input class="align" type="text"
+										th:field="*{idCertificadoVinculacion.avisoVencimientoCertificadoVinculacion}"
+										id="validationDefault13"
+										placeholder="Aviso de Vencimiento (Dias)"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idCertificadoVinculacion.avisoVencimientoCertificadoVinculacion')}"
+										th:errors="*{idCertificadoVinculacion.avisoVencimientoCertificadoVinculacion}"></small>
+								</p>
+							</div>
+						</div>
+
+						<!-- Certificado de Revisión Tecnomecanica -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapse5"><i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal">
+									</i>Certificado de Revisión Tecnomecanica</a>
+								</h4>
+							</div>
+							<div id="collapse5" class="panel-collapse collapse">
+								<br></br>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Número de
+											Certificado de Revisión Tecnomecanica</label></i> <input class="align"
+										type="text"
+										th:field="*{idCertificadoRevisionTecnomecanica.numeroCertificadoRevisionTecnomecanica}"
+										id="validationDefault13"
+										placeholder="Número de Certificado de Revisión Tecnomecanica"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idCertificadoRevisionTecnomecanica.numeroCertificadoRevisionTecnomecanica')}"
+										th:errors="*{idCertificadoRevisionTecnomecanica.numeroCertificadoRevisionTecnomecanica}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Expedicion Certificado de Revisión Tecnomecanica</label></i> <input
+										class="align" type="date"
+										th:field="*{idCertificadoRevisionTecnomecanica.fechaExpedicionCertificadoRevisionTecnomecanica}"
+										id="validationDefault20"
+										placeholder="Fecha de Expedicion del Certificado de Revisión Tecnomecanica" />
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('idCertificadoRevisionTecnomecanica.fechaExpedicionCertificadoRevisionTecnomecanica')}"
+										th:errors="*{idCertificadoRevisionTecnomecanica.fechaExpedicionCertificadoRevisionTecnomecanica}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Vencimiento Certificado de Revisión Tecnomecanica</label></i> <input
+										class="align" type="date"
+										th:field="*{idCertificadoRevisionTecnomecanica.fechaVencimientoCertificadoRevisionTecnomecanica}"
+										id="validationDefault20"
+										placeholder="Fecha de Vencimiento del Certificado de Revisión Tecnomecanica" />
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('idCertificadoRevisionTecnomecanica.fechaVencimientoCertificadoRevisionTecnomecanica')}"
+										th:errors="*{idCertificadoRevisionTecnomecanica.fechaVencimientoCertificadoRevisionTecnomecanica}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Aviso de
+											Vencimiento (Dias)</label></i> <input class="align" type="text"
+										th:field="*{idCertificadoRevisionTecnomecanica.avisoVencimientoCertificadoRevisionTecnomecanica}"
+										id="validationDefault13"
+										placeholder="Aviso de Vencimiento (Dias)"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idCertificadoRevisionTecnomecanica.avisoVencimientoCertificadoRevisionTecnomecanica')}"
+										th:errors="*{idCertificadoRevisionTecnomecanica.avisoVencimientoCertificadoRevisionTecnomecanica}"></small>
+								</p>
+							</div>
+						</div>
+
+						<!-- Poliza de Responsabilidad Civil -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapse6"><i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal">
+									</i>Poliza de Responsabilidad Civil</a>
+								</h4>
+							</div>
+							<div id="collapse6" class="panel-collapse collapse">
+								<br></br>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Número de
+											Poliza de Responsabilidad Civil</label></i> <input class="align"
+										type="text"
+										th:field="*{idPolizaResponsabilidadCivil.numeroPolizaResponsabilidadCivil}"
+										id="validationDefault13"
+										placeholder="Número de Poliza de Responsabilidad Civil"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaResponsabilidadCivil.numeroPolizaResponsabilidadCivil')}"
+										th:errors="*{idPolizaResponsabilidadCivil.numeroPolizaResponsabilidadCivil}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Expedicion de Poliza de Responsabilidad Civil</label></i> <input
+										class="align" type="date"
+										th:field="*{idPolizaResponsabilidadCivil.fechaExpedicionPolizaResponsabilidadCivil}"
+										id="validationDefault20"
+										placeholder="Fecha de Expedicion de Poliza de Responsabilidad Civil" />
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaResponsabilidadCivil.fechaExpedicionPolizaResponsabilidadCivil')}"
+										th:errors="*{idPolizaResponsabilidadCivil.fechaExpedicionPolizaResponsabilidadCivil}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Vencimiento de Poliza de Responsabilidad Civil</label></i> <input
+										class="align" type="date"
+										th:field="*{idPolizaResponsabilidadCivil.fechaVencimientoPolizaResponsabilidadCivil}"
+										id="validationDefault20"
+										placeholder="Fecha de Poliza de Responsabilidad Civil" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaResponsabilidadCivil.fechaVencimientoPolizaResponsabilidadCivil')}"
+										th:errors="*{idPolizaResponsabilidadCivil.fechaVencimientoPolizaResponsabilidadCivil}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Aviso de
+											Vencimiento (Dias)</label></i> <input class="align" type="text"
+										th:field="*{idPolizaResponsabilidadCivil.avisoVencimientoPolizaResponsabilidadCivil}"
+										id="validationDefault13"
+										placeholder="Aviso de Vencimiento (Dias)"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaResponsabilidadCivil.avisoVencimientoPolizaResponsabilidadCivil')}"
+										th:errors="*{idPolizaResponsabilidadCivil.avisoVencimientoPolizaResponsabilidadCivil}"></small>
+								</p>
+							</div>
+						</div>
+
+						<!-- Poliza de Responsabilidad -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapse7"><i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal">
+									</i>Poliza de Responsabilidad Civil Extracontractual</a>
+								</h4>
+							</div>
+							<div id="collapse7" class="panel-collapse collapse">
+								<br></br>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Número de
+											Poliza de Responsabilidad Civil Extracontractual</label></i><input
+										class="align" type="text"
+										th:field="*{idPolizaResponsabilidadCivilExtracontractual.numeroPolizaResponsabilidadCivilExtracontractual}"
+										id="validationDefault13"
+										placeholder="Número de Poliza de Responsabilidad Civil Extracontractual"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaResponsabilidadCivilExtracontractual.numeroPolizaResponsabilidadCivilExtracontractual')}"
+										th:errors="*{idPolizaResponsabilidadCivilExtracontractual.numeroPolizaResponsabilidadCivilExtracontractual}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha
+											Expedicion Poliza Responsabilidad Civil Extracontractual</label></i><input
+										type="date"
+										th:field="*{idPolizaResponsabilidadCivilExtracontractual.fechaExpedicionPolizaResponsabilidadCivilExtracontractual}"
+										id="validationDefault20"
+										placeholder="Fecha de Expedicion de Poliza de Responsabilidad Civil Extracontractual" />
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaResponsabilidadCivilExtracontractual.fechaExpedicionPolizaResponsabilidadCivilExtracontractual')}"
+										th:errors="*{idPolizaResponsabilidadCivilExtracontractual.fechaExpedicionPolizaResponsabilidadCivilExtracontractual}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha
+											Vencimiento Poliza Responsabilidad Civil Extracontractual</label></i><input
+										type="date"
+										th:field="*{idPolizaResponsabilidadCivilExtracontractual.fechaVencimientoPolizaResponsabilidadCivilExtracontractual}"
+										id="validationDefault20"
+										placeholder="Fecha de Vencimiento de Poliza de Responsabilidad Civil Extracontractual" />
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaResponsabilidadCivilExtracontractual.fechaVencimientoPolizaResponsabilidadCivilExtracontractual')}"
+										th:errors="*{idPolizaResponsabilidadCivilExtracontractual.fechaVencimientoPolizaResponsabilidadCivilExtracontractual}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Aviso de
+											Vencimiento (Dias)</label></i> <input class="align" type="text"
+										th:field="*{idPolizaResponsabilidadCivilExtracontractual.avisoVencimientoPolizaResponsabilidadCivilExtracontractual}"
+										id="validationDefault13"
+										placeholder="Aviso de Vencimiento (Dias)"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaResponsabilidadCivilExtracontractual.avisoVencimientoPolizaResponsabilidadCivilExtracontractual')}"
+										th:errors="*{idPolizaResponsabilidadCivilExtracontractual.avisoVencimientoPolizaResponsabilidadCivilExtracontractual}"></small>
+								</p>
+							</div>
+						</div>
+
+						<!-- Poliza Todo Riesgo -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapse8"><i
+										class="fa fa-ticket  fa-fw w3-margin-right w3-large w3-text-teal">
+									</i>Poliza Todo Riesgo</a>
+								</h4>
+							</div>
+							<div id="collapse8" class="panel-collapse collapse">
+								<br></br>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Número de
+											Poliza Todo Riesgo</label></i> <input class="align" type="text"
+										th:field="*{idPolizaTodoRiesgo.numeroPolizaTodoRiesgo}"
+										id="validationDefault13"
+										placeholder="Número de Poliza Todo Riesgo"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaTodoRiesgo.numeroPolizaTodoRiesgo')}"
+										th:errors="*{idPolizaTodoRiesgo.numeroPolizaTodoRiesgo}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Expedicion de Poliza Todo Riesgo</label></i> <input class="align"
+										type="date"
+										th:field="*{idPolizaTodoRiesgo.fechaExpedicionPolizaTodoRiesgo}"
+										id="validationDefault20"
+										placeholder="Fecha de Expedicion de Poliza Todo Riesgo" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaTodoRiesgo.fechaExpedicionPolizaTodoRiesgo')}"
+										th:errors="*{idPolizaTodoRiesgo.fechaExpedicionPolizaTodoRiesgo}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Fecha de
+											Vencimiento de Poliza Todo Riesgo</label></i> <input class="align"
+										type="date"
+										th:field="*{idPolizaTodoRiesgo.fechaVencimientoPolizaTodoRiesgo}"
+										id="validationDefault20"
+										placeholder="Fecha de Vencimiento de Poliza Todo Riesgo" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idSoat.fechaVencimientoSoat')}"
+										th:errors="*{idPolizaTodoRiesgo.fechaVencimientoPolizaTodoRiesgo}"></small>
+								</p>
+								<p>
+									<i class="col-sm-7"><label class="alignL">Aviso de
+											Vencimiento (Dias)</label></i> <input class="align" type="text"
+										th:field="*{idPolizaTodoRiesgo.avisoVencimientoPolizaTodoRiesgo}"
+										id="validationDefault13"
+										placeholder="Aviso de Vencimiento (Dias)"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('idPolizaTodoRiesgo.avisoVencimientoPolizaTodoRiesgo')}"
+										th:errors="*{idPolizaTodoRiesgo.avisoVencimientoPolizaTodoRiesgo}"></small>
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- End Right Column -->
+							<footer class="w3-container w3-teal w3-center w3-margin-top">
+			<p>SUMA SAS 2017 - Area de Operaciones.</p>
+		</footer>
+				</div>
+
+				<!-- End Grid -->
+			</div>
+
+			<!-- End Page Container -->
+		</div>
+	</form>
+	</div>
+	</div>
+	</div>
+</body>
+</html>

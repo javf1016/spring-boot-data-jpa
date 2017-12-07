@@ -1,16 +1,10 @@
 package com.bolsadeideas.springboot.app.models.dao;
 
-import java.util.List;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.bolsadeideas.springboot.app.models.entity.Vehiculo;
 
 
-public interface IVehiculoDao {
-
-	public List<Vehiculo> findAll();
-	
-	public void save (Vehiculo vehiculo);
-	
-	public Vehiculo findOne(Long id);
+public interface IVehiculoDao  extends PagingAndSortingRepository<Vehiculo, Long>{
 	
 }
